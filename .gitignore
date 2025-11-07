@@ -1,0 +1,8 @@
+.venv
+db.sqlite3
+__pycache__/
+*.pyc
+management_site/migrations/
+*.log
+.env
+.vscode/
