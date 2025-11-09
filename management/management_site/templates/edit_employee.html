@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="p-6 flex flex-col justify-center items-center">
+  <div class="mb-6">
+    <a href="{% url 'employee_detail' employee.pk %}" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 inline-flex items-center">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back to Details
+    </a>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700 p-6 max-w-2xl">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Edit Employee: {{ employee.first_name }} {{ employee.last_name }}</h2>
+
+    <form method="POST" class="space-y-6">
+      {% csrf_token %}
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">First Name</label>
+          {{ form.first_name }}
+          {% if form.first_name.errors %}
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.first_name.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Last Name</label>
+          {{ form.last_name }}
+          {% if form.last_name.errors %}
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.last_name.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+          {{ form.email }}
+          {% if form.email.errors %}
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.email.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone</label>
+          {{ form.phone }}
+          {% if form.phone.errors %}
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.phone.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Address</label>
+          {{ form.address }}
+          {% if form.address.errors %}
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.address.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">City</label>
+          {{ form.city }}
+          {% if form.city.errors %}
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.city.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">State</label>
+          {{ form.state }}
+          {% if form.state.errors %}
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.state.errors.0 }}</p>
+          {% endif %}
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Zipcode</label>
+          {{ form.zipcode }}
+          {% if form.zipcode.errors %}
+            <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ form.zipcode.errors.0 }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-3 pt-4">
+        <a href="{% url 'employee_detail' employee.pk %}" class="px-6 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+          Cancel
+        </a>
+        <button type="submit" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">
+          Update Employee
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
