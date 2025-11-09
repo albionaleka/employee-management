@@ -22,30 +22,28 @@
 <div class="min-h-screen flex items-center justify-center px-4 py-12">
     <div class="w-full max-w-md space-y-8">
         <div class="text-center">
-            <h2 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">Login</h2>
-            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Access your account</p>
+            <h2 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">Register</h2>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Create your account</p>
         </div>
-        <form method="post" class="space-y-6" novalidate>
+
+        <form method="POST" action="" class="space-y-5" novalidate>
             {% csrf_token %}
-            <div class="space-y-4">
+            {% for field in form %}
                 <div>
-                    <label for="username" class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
-                    <input type="text" id="username" name="username" required
-                                 class="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Your username">
+                    {% for error in field.errors %}
+                        <div class="text-red-600 dark:text-red-400 text-sm mb-1">* {{ error }}</div>
+                    {% endfor %}
+
+                    {{ field }}
+
+                    {% if field.help_text %}
+                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">{{ field.help_text|safe }}</p>
+                    {% endif %}
                 </div>
-                <div>
-                    <label for="password" class="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
-                    <input type="password" id="password" name="password" required
-                                 class="block w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Password">
-                </div>
-            </div>
-            <div>
-                <button type="submit"
-                                class="inline-flex w-full items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-white font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    Login
-                </button>
-            </div>
-            <p class="text-center text-sm text-gray-600 dark:text-gray-400">Don&#39;t have an account? <a href="{% url 'register' %}" class="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500">Register</a></p>
+            {% endfor %}
+
+            <button type="submit" class="inline-flex w-full items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-white font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Register</button>
+            <p class="text-center text-sm text-gray-600 dark:text-gray-400">Already have an account? <a href="{% url 'login' %}" class="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500">Login</a></p>
         </form>
     </div>
 </div>
