@@ -2,7 +2,7 @@
 db.sqlite3
 __pycache__/
 *.pyc
-management_site/migrations/
+migrations/
 *.log
 .env
 .vscode/
