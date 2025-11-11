@@ -20,7 +20,9 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    # Root dashboard (unnamed for legacy compatibility); explicit /home/ path used by tests
+    path('', views.home, name='root'),
+    path('home/', views.home, name='home'),
     path('register/', views.register, name='register'),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
