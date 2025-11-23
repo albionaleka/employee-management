@@ -1,8 +1,10 @@
 .venv
 db.sqlite3
+test_db.sqlite3
 __pycache__/
 *.pyc
 migrations/
 *.log
 .env
 .vscode/
+__init__.py
