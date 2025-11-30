@@ -18,22 +18,18 @@ except Exception:
 
 
 class BaseSeleniumTest(StaticLiveServerTestCase):
-    browser_used = None
-    # This ensures that database changes in tests are visible to the live server
     serialized_rollback = True
-    
-    # Allow connections from any host during tests
+
     @classmethod
     def setUpClass(cls):
         from django.conf import settings
-        # Ensure the test server can be accessed
         settings.ALLOWED_HOSTS.append('localhost')
         settings.ALLOWED_HOSTS.append('127.0.0.1')
         settings.ALLOWED_HOSTS.append('[::1]')
         super().setUpClass()
 
         driver = None
-        headless = (os.environ.get('SELENIUM_HEADLESS', '1') != '0')
+        headless = (os.environ.get('HEADLESS', '1') != '0')
 
         if ChromeOptions and ChromeDriverManager:
             try:
