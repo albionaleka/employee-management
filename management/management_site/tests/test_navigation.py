@@ -21,11 +21,9 @@ class NavigationTests(BaseSeleniumTest):
 
     def test_navbar_employees_link(self):
         self.login()
-        
-        # Ensure desktop view (md breakpoint is 768px)
+
         self.selenium.set_window_size(1024, 768)
         
-        # Find the desktop menu link (inside .hidden.md:flex container)
         employees_link = self.wait_for_clickable(
             By.CSS_SELECTOR, 
             'div.hidden.md\\:flex a[href*="employees"]',
@@ -41,11 +39,9 @@ class NavigationTests(BaseSeleniumTest):
 
     def test_navbar_add_employee_link(self):
         self.login()
-        
-        # Ensure desktop view (md breakpoint is 768px)
+
         self.selenium.set_window_size(1024, 768)
         
-        # Find the desktop menu link (inside .hidden.md:flex container)
         add_link = self.wait_for_clickable(
             By.CSS_SELECTOR,
             'div.hidden.md\\:flex a[href*="add"]',
@@ -62,10 +58,8 @@ class NavigationTests(BaseSeleniumTest):
     def test_navbar_logout_button(self):
         self.login()
         
-        # Ensure desktop view (md breakpoint is 768px)
         self.selenium.set_window_size(1024, 768)
         
-        # Find the desktop logout button (inside .hidden.md:block form)
         logout_button = self.wait_for_clickable(
             By.CSS_SELECTOR,
             'form.hidden.md\\:block[action*="logout"] button[type="submit"]',
@@ -218,8 +212,7 @@ class NavigationTests(BaseSeleniumTest):
 
     def test_breadcrumb_navigation(self):
         self.login()
-        
-        # Ensure desktop view
+
         self.selenium.set_window_size(1024, 768)
         
         self.assertIn('home', self.selenium.current_url)

@@ -36,8 +36,6 @@ class BaseSeleniumTest(StaticLiveServerTestCase):
                 chrome_options = ChromeOptions()
                 if headless:
                     chrome_options.add_argument('--headless=new')
-                else:
-                    chrome_options.add_argument('--auto-open-devtools-for-tabs')
                 chrome_options.add_argument('--no-sandbox')
                 chrome_options.add_argument('--disable-dev-shm-usage')
                 chrome_options.add_argument('--window-size=1400,1000')
